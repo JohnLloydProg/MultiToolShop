@@ -1,6 +1,5 @@
 package com.unida.multitoolshop.serviceimpl;
 import com.unida.multitoolshop.entity.MenuData;
-import com.unida.multitoolshop.model.Menu;
 import com.unida.multitoolshop.repository.MenuDataRepository;
 import com.unida.multitoolshop.service.MenuService;
 import com.unida.multitoolshop.util.Transform;

@@ -1,7 +1,5 @@
 package com.unida.multitoolshop.service;
 
-import com.unida.multitoolshop.model.Order;
-
 public interface OrderService {
     Order create(Order order);
     Order invoice(Order order);

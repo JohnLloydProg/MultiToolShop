@@ -1,6 +1,5 @@
 package com.unida.multitoolshop.controller;
 
-import com.unida.multitoolshop.model.Menu;
 import com.unida.multitoolshop.service.MenuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

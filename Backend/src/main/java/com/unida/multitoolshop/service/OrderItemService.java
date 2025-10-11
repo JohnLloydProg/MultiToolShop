@@ -1,6 +1,5 @@
 package com.unida.multitoolshop.service;
 import com.unida.multitoolshop.enums.OrderItemStatus;
-import com.unida.multitoolshop.model.OrderItem;
 
 import java.util.List;
 

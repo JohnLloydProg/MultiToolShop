@@ -2,15 +2,12 @@ package com.unida.multitoolshop.model;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
-public class Order {
+public class Cart {
     private Integer id;
-    private Customer customer;
+    private Customer owner;
     private MultiToolSet multiToolSet;
     private List<MultiToolOption> options;
-    private Float total_price;
-    private Date created;
 }

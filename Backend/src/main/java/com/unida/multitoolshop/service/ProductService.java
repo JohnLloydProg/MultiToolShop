@@ -1,8 +1,5 @@
 package com.unida.multitoolshop.service;
 
-import com.unida.multitoolshop.model.Product;
-import com.unida.multitoolshop.model.ProductCategory;
-
 import java.util.*;
 
 public interface ProductService {

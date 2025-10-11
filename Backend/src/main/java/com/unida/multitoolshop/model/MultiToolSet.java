@@ -6,11 +6,12 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class Order {
+public class MultiToolSet {
     private Integer id;
-    private Customer customer;
-    private MultiToolSet multiToolSet;
+    private String name;
+    private String description;
     private List<MultiToolOption> options;
-    private Float total_price;
+    private Float basePrice;
     private Date created;
+    private Date updated;
 }

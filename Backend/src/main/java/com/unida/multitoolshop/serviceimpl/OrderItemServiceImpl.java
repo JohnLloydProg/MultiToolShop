@@ -1,7 +1,6 @@
 package com.unida.multitoolshop.serviceimpl;
 import com.unida.multitoolshop.entity.OrderItemData;
 import com.unida.multitoolshop.enums.OrderItemStatus;
-import com.unida.multitoolshop.model.OrderItem;
 import com.unida.multitoolshop.repository.OrderItemDataRepository;
 import com.unida.multitoolshop.service.OrderItemService;
 import com.unida.multitoolshop.util.Transform;
