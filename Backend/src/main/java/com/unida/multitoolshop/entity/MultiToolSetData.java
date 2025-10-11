@@ -7,28 +7,28 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
+@Table
 @Entity
-@Table(name = "product_data")
-public class    ProductData {
+public class MultiToolSetData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    String name;
-    String description;
-    String categoryName;
-    String unitOfMeasure;
-    String price;
-    String imageFile;
-
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-    private Date lastUpdated;
+    private Integer id;
+    private String name;
+    private String description;
+    private List<MultiToolOptionData> options;
+    private List<String> images;
+    private Float basePrice;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
     private Date created;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
+    private Date updated;
 }

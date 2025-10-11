@@ -9,21 +9,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@Entity
-@Table
-public class CustomerData {
+public class OptionCategoryData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String address;
-    private String contactNumber;
-
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+08:00")
-    private Date birthdate;
+    private String name;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

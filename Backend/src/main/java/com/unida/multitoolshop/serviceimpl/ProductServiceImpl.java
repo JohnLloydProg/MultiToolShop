@@ -1,6 +1,5 @@
 package com.unida.multitoolshop.serviceimpl;
 
-import com.unida.multitoolshop.entity.ProductData;
 import com.unida.multitoolshop.repository.ProductDataRepository;
 import com.unida.multitoolshop.service.ProductService;
 import com.unida.multitoolshop.util.Transform;

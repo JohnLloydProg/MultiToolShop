@@ -11,6 +11,7 @@ public class MultiToolSet {
     private String name;
     private String description;
     private List<MultiToolOption> options;
+    private List<String> images;
     private Float basePrice;
     private Date created;
     private Date updated;

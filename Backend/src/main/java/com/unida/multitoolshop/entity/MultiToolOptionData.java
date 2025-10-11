@@ -1,7 +1,6 @@
 package com.unida.multitoolshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.unida.multitoolshop.enums.OrderItemStatus;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,31 +10,23 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "order_item_data")
-public class OrderItemData {
+@Table
+public class MultiToolOptionData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    int orderId;
-    int customerId;
-    String customerName;
-    int productId;
-    String productName;
-    String productDescription;
-    String productCategoryName;
-    String productImageFile;
-    String productUnitOfMeasure;
-    double quantity;
-    double price;
-    OrderItemStatus status;
-
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
-    private Date lastUpdated;
+    private Integer id;
+    private String name;
+    private OptionCategoryData category;
+    private String image;
+    private Float addedPrice;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
     private Date created;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
+    private Date updated;
 }
