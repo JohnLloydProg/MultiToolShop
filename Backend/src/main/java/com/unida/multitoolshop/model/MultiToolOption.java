@@ -10,7 +10,6 @@ public class MultiToolOption {
     private String name;
     private OptionCategory category;
     private String image;
-    private Float addedPrice;
-    private Date created;
     private Date updated;
+    private Date created;
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,9 +21,11 @@ public class OrderData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Customer customer;
-    private MultiToolSet multiToolSet;
-    private List<MultiToolOption> options;
-    private Float total_price;
+    private Integer setId;
+    @OneToMany
+    @JoinColumn(name = "multiToolSetOptionData_id")
+    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
+    private float totalPrice;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

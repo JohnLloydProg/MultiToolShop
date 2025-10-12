@@ -1,29 +1,32 @@
 package com.unida.multitoolshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.unida.multitoolshop.model.MultiToolOption;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
-@Table
-public class MultiToolOptionData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String name;
+public class MultiToolSetOptionData {
+
+    @EmbeddedId
+    private SetOptionId id = new SetOptionId();
+
     @ManyToOne
-    @JoinColumn(name = "optionCategoryData_id")
-    private OptionCategoryData optionCategoryData;
-    @OneToMany(mappedBy = "multiToolOptionData", cascade = CascadeType.ALL)
-    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
-    private String image;
+    @MapsId("multiToolSetDataId")
+    @JoinColumn(name = "multiToolSetData_id")
+    private MultiToolSetData multiToolSetData;
+
+    @ManyToOne
+    @MapsId("multToolOptionDataId")
+    @JoinColumn(name = "multiToolOptionData_id")
+    private MultiToolOptionData multiToolOption;
+
+    private Float addedPrice;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -34,4 +37,5 @@ public class MultiToolOptionData {
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
     private Date updated;
+
 }

@@ -7,6 +7,7 @@ import com.unida.multitoolshop.model.MultiToolSet;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,7 +17,11 @@ public class CartData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "customerData_id")
     private Customer owner;
-    private MultiToolSet multiToolSet;
-    private List<MultiToolOption> options;
+    private Integer setId;
+    @OneToMany
+    @JoinColumn(name = "multiToolSetOptionData_id")
+    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
 }

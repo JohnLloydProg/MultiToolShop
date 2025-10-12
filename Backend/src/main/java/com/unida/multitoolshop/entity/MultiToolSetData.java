@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +19,10 @@ public class MultiToolSetData {
     private Integer id;
     private String name;
     private String description;
-    private List<MultiToolOptionData> options;
-    private List<String> images;
+
+    @OneToMany(mappedBy = "multiToolSetData", cascade = CascadeType.ALL)
+    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
+    private List<String> images = new ArrayList<>();
     private Float basePrice;
 
     @CreationTimestamp
