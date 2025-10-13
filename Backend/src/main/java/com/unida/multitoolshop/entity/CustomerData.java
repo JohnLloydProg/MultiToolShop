@@ -18,6 +18,8 @@ public class CustomerData {
     private String firstName;
     private String middleName;
     private String lastName;
+    private String email;
+    private String password;
     private String address;
     private String contactNumber;
 

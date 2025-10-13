@@ -10,7 +10,7 @@ public class MultiToolSet {
     private Integer id;
     private String name;
     private String description;
-    private List<MultiToolOption> options;
+    private List<MultiToolSetOption> options;
     private List<String> images;
     private Float basePrice;
     private Date created;

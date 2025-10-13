@@ -6,5 +6,8 @@ import com.unida.multitoolshop.model.Customer;
 import java.util.List;
 
 public interface CartService {
-    Cart getCartByCustomer(Customer customer );
+    Cart getCartByCustomer(Customer customer);
+    Cart create(Cart cart);
+    Cart update(Cart cart);
+    void delete(Integer id);
 }

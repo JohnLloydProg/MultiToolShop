@@ -1,5 +1,6 @@
 package com.unida.multitoolshop.model;
 
+import com.unida.multitoolshop.entity.SetOptionId;
 import lombok.Data;
 
 import java.util.Date;
@@ -9,8 +10,8 @@ import java.util.List;
 public class Order {
     private Integer id;
     private Customer customer;
-    private MultiToolSet multiToolSet;
-    private List<MultiToolOption> options;
-    private Float total_price;
+    private Integer multiToolSetId;
+    private List<SetOptionId> options;
+    private Float totalPrice;
     private Date created;
 }

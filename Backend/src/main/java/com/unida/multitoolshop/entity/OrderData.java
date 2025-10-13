@@ -20,11 +20,13 @@ public class OrderData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Customer customer;
-    private Integer setId;
+    private CustomerData customerData;
+    @ManyToOne
+    @JoinColumn(name = "multiToolSetData_id")
+    private Integer multiToolSetId;
     @OneToMany
     @JoinColumn(name = "multiToolSetOptionData_id")
-    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
+    private List<SetOptionId> setOptions;
     private float totalPrice;
 
     @CreationTimestamp

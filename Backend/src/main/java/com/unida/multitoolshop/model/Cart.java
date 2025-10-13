@@ -9,5 +9,5 @@ public class Cart {
     private Integer id;
     private Customer owner;
     private MultiToolSet multiToolSet;
-    private List<MultiToolOption> options;
+    private List<MultiToolSetOption> options;
 }

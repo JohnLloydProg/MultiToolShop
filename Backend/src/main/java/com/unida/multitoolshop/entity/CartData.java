@@ -19,9 +19,11 @@ public class CartData {
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "customerData_id")
-    private Customer owner;
-    private Integer setId;
+    private CustomerData owner;
+    @ManyToOne
+    @JoinColumn(name = "multiToolSetData_id")
+    private MultiToolSetData multiToolSetData;
     @OneToMany
     @JoinColumn(name = "multiToolSetOptionData_id")
-    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
+    private List<MultiToolSetOptionData> setOptions;
 }

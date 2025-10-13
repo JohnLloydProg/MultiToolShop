@@ -1,6 +1,5 @@
 package com.unida.multitoolshop.controller;
 
-import com.unida.multitoolshop.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
