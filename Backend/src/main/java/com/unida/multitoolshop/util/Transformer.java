@@ -8,39 +8,13 @@ import java.util.List;
 
 public class Transformer {
 
-    public static Cart convert(CartData cartData) {
-        Cart cart = new Cart();
-        cart.setId(cartData.getId());
-        cart.setOwner(Transformer.convert(cartData.getOwner()));
-        cart.setMultiToolSet(Transformer.convert(cartData.getMultiToolSetData()));
-        List<MultiToolSetOption> multiToolSetOptionList = new ArrayList<>();
-        for (MultiToolSetOptionData multiToolSetOptionData : cartData.getSetOptions()) {
-            multiToolSetOptionList.add(Transformer.convert(multiToolSetOptionData));
-        }
-        cart.setOptions(multiToolSetOptionList);
-        return cart;
-    }
-
-    public static CartData convert(Cart cart) {
-        CartData cartData = new CartData();
-        cartData.setId(cart.getId());
-        cartData.setOwner(Transformer.convert(cart.getOwner()));
-        cartData.setMultiToolSetData(Transformer.convert(cart.getMultiToolSet()));
-        List<MultiToolSetOptionData> multiToolSetOptionData = new ArrayList<>();
-        for (MultiToolSetOption multiToolSetOption : cart.getOptions()) {
-            multiToolSetOptionData.add(Transformer.convert(multiToolSetOption));
-        }
-        cartData.setSetOptions(multiToolSetOptionData);
-        return cartData;
-    }
-
     public static Order convert(OrderData orderData) {
         Order order = new Order();
         order.setId(orderData.getId());
         order.setCustomer(Transformer.convert(orderData.getCustomerData()));
         order.setMultiToolSetId(orderData.getMultiToolSetId());
         List<MultiToolSetOption> multiToolOptionList = new ArrayList<>();
-        order.setOptions(orderData.getSetOptions());
+        order.setOptions(orderData.getOptionIds());
         order.setTotalPrice(orderData.getTotalPrice());
         order.setCreated(orderData.getCreated());
         return order;
@@ -51,7 +25,7 @@ public class Transformer {
         orderData.setId(order.getId());
         orderData.setCustomerData(Transformer.convert(order.getCustomer()));
         orderData.setMultiToolSetId(order.getMultiToolSetId());
-        orderData.setSetOptions(order.getOptions());
+        orderData.setOptionIds(order.getOptions());
         orderData.setTotalPrice(order.getTotalPrice());
         orderData.setCreated(order.getCreated());
         return orderData;
@@ -94,14 +68,7 @@ public class Transformer {
         multiToolSetData.setId(multiToolSet.getId());
         multiToolSetData.setName(multiToolSet.getName());
         multiToolSetData.setDescription(multiToolSet.getDescription());
-        List<MultiToolSetOptionData> options = new ArrayList<>();
-        for (MultiToolSetOption setOption : multiToolSet.getOptions()) {
-            MultiToolSetOptionData multiToolSetOptionData = Transformer.convert(setOption);
-            multiToolSetOptionData.setMultiToolSetData(multiToolSetData);
-            options.add(multiToolSetOptionData);
-        }
-        multiToolSetData.setSetOptions(options);
-        multiToolSetData.setImages(multiToolSet.getImages());
+        multiToolSetData.setImage(multiToolSet.getImage());
         multiToolSetData.setBasePrice(multiToolSet.getBasePrice());
         multiToolSetData.setCreated(multiToolSet.getCreated());
         multiToolSetData.setUpdated(multiToolSet.getUpdated());
@@ -131,7 +98,6 @@ public class Transformer {
     public static MultiToolSetOptionData convert(MultiToolSetOption multiToolSetOption) {
         MultiToolSetOptionData multiToolSetOptionData = new MultiToolSetOptionData();
         multiToolSetOptionData.setId(multiToolSetOption.getId());
-        multiToolSetOptionData.setMultiToolOption(Transformer.convert(multiToolSetOption.getMultiToolOption()));
         multiToolSetOptionData.setAddedPrice(multiToolSetOption.getAddedPrice());
         multiToolSetOptionData.setCreated(multiToolSetOption.getCreated());
         multiToolSetOptionData.setUpdated(multiToolSetOption.getUpdated());
@@ -143,14 +109,7 @@ public class Transformer {
         multiToolSet.setId(multiToolSetData.getId());
         multiToolSet.setName(multiToolSetData.getName());
         multiToolSet.setDescription(multiToolSetData.getDescription());
-        List<MultiToolSetOption> options = new ArrayList<>();
-        for (MultiToolSetOptionData setOptionData : multiToolSetData.getSetOptions()) {
-            MultiToolSetOption multiToolSetOption = Transformer.convert(setOptionData);
-            multiToolSetOption.setMultiToolSet(multiToolSet);
-            options.add(multiToolSetOption);
-        }
-        multiToolSet.setOptions(options);
-        multiToolSet.setImages(multiToolSetData.getImages());
+        multiToolSet.setImage(multiToolSetData.getImage());
         multiToolSet.setBasePrice(multiToolSetData.getBasePrice());
         multiToolSet.setCreated(multiToolSetData.getCreated());
         multiToolSet.setUpdated(multiToolSetData.getUpdated());
@@ -180,7 +139,6 @@ public class Transformer {
     public static MultiToolSetOption convert(MultiToolSetOptionData multiToolSetOptionData) {
         MultiToolSetOption multiToolSetOption = new MultiToolSetOption();
         multiToolSetOption.setId(multiToolSetOptionData.getId());
-        multiToolSetOption.setMultiToolOption(Transformer.convert(multiToolSetOptionData.getMultiToolOption()));
         multiToolSetOption.setAddedPrice(multiToolSetOptionData.getAddedPrice());
         multiToolSetOption.setCreated(multiToolSetOptionData.getCreated());
         multiToolSetOption.setUpdated(multiToolSetOptionData.getUpdated());

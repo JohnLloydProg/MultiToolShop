@@ -11,18 +11,16 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Table
 @Entity
+@Table
 public class MultiToolSetData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "multiToolSetData", cascade = CascadeType.ALL)
-    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
-    private List<String> images = new ArrayList<>();
+    private String image;
     private Float basePrice;
 
     @CreationTimestamp

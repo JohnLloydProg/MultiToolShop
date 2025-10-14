@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Customer getById(Integer id) {
+    public Customer getById(int id) {
         Optional<CustomerData> customerData = customerDataRepository.findById(id);
         if (customerData.isPresent()) {
             logger.info("Returned Customer with id " + customerData.get().getId());
@@ -50,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         Optional<CustomerData> customerData = customerDataRepository.findById(id);
         if (customerData.isPresent()) {
             logger.info("Deleted Customer with id " + customerData.get().getId());

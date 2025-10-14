@@ -11,21 +11,13 @@ import java.util.Date;
 
 @Data
 @Entity
+@Table
 public class MultiToolSetOptionData {
-
-    @EmbeddedId
-    private SetOptionId id = new SetOptionId();
-
-    @ManyToOne
-    @MapsId("multiToolSetDataId")
-    @JoinColumn(name = "multiToolSetData_id")
-    private MultiToolSetData multiToolSetData;
-
-    @ManyToOne
-    @MapsId("multToolOptionDataId")
-    @JoinColumn(name = "multiToolOptionData_id")
-    private MultiToolOptionData multiToolOption;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private int setId;
+    private int optionId;
     private Float addedPrice;
 
     @CreationTimestamp

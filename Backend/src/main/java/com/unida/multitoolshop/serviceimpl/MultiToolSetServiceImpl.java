@@ -34,7 +34,7 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
     }
 
     @Override
-    public MultiToolSet getById(Integer id) {
+    public MultiToolSet getById(int id) {
         Optional<MultiToolSetData> multiToolSetData = multiToolSetDataRepository.findById(id);
         if (multiToolSetData.isPresent()) {
             return Transformer.convert(multiToolSetData.get());
@@ -61,7 +61,7 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         Optional<MultiToolSetData> multiToolSetData = multiToolSetDataRepository.findById(id);
         if (multiToolSetData.isPresent()) {
             logger.info("Deleted MultiToolSet with id " + multiToolSetData.get().getId());

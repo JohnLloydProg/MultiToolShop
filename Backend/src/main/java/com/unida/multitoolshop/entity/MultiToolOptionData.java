@@ -16,13 +16,11 @@ import java.util.List;
 public class MultiToolOptionData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String name;
     @ManyToOne
     @JoinColumn(name = "optionCategoryData_id")
     private OptionCategoryData optionCategoryData;
-    @OneToMany(mappedBy = "multiToolOptionData", cascade = CascadeType.ALL)
-    private List<MultiToolSetOptionData> setOptions = new ArrayList<>();
     private String image;
 
     @CreationTimestamp

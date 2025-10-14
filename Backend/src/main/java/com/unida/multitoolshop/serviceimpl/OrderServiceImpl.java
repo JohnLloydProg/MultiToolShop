@@ -24,10 +24,10 @@ public class OrderServiceImpl implements OrderService {
     OrderDataRepository orderDataRepository;
 
     @Override
-    public List<Order> getAllByCustomer(Customer customer) {
+    public List<Order> getAllByCustomerId(int customerId) {
         List<Order> orderList = new ArrayList<>();
         for (OrderData orderData : orderDataRepository.findAll()) {
-            if (orderData.getCustomerData().equals(customer)) {
+            if (orderData.getCustomerData().getId() == customerId) {
                 orderList.add(Transformer.convert(orderData));
             }
         }
@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getById(Integer id) {
+    public Order getById(int id) {
         Optional<OrderData> orderData = orderDataRepository.findById(id);
         if (orderData.isPresent()) {
             logger.info("Returned Order with id of " + orderData.get().getId());

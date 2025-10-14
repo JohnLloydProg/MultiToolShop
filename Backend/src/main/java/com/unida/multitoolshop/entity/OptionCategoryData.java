@@ -9,10 +9,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Data
+@Entity
+@Table
 public class OptionCategoryData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String name;
 
     @CreationTimestamp

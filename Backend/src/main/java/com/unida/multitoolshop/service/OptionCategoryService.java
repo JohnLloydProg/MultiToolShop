@@ -7,5 +7,5 @@ import java.util.List;
 public interface OptionCategoryService {
     List<OptionCategory> getAll();
     OptionCategory create(OptionCategory optionCategory);
-    void delete(Integer id);
+    void delete(int id);
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 public class CustomerData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
     private String firstName;
     private String middleName;
     private String lastName;

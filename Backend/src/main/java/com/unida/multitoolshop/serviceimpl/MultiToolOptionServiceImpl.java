@@ -49,7 +49,7 @@ public class MultiToolOptionServiceImpl implements MultiToolOptionService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         Optional<MultiToolOptionData> multiToolOptionData = multiToolOptionDataRepository.findById(id);
         if (multiToolOptionData.isPresent()) {
             logger.info("Deleted the MultiToolOption with id " + multiToolOptionData.get().getId());

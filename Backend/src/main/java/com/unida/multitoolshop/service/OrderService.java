@@ -6,7 +6,7 @@ import com.unida.multitoolshop.model.Order;
 import java.util.List;
 
 public interface OrderService {
-    List<Order> getAllByCustomer(Customer customer);
-    Order getById(Integer id);
+    List<Order> getAllByCustomerId(int customerId);
+    Order getById(int id);
     Order create(Order order);
 }

@@ -42,7 +42,7 @@ public class OptionCategoryServiceImpl implements OptionCategoryService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         Optional<OptionCategoryData> optionCategoryData = optionCategoryDataRepository.findById(id);
         if (optionCategoryData.isPresent()) {
             logger.info("Deleted OptionCategory with id " + optionCategoryData.get().getId());

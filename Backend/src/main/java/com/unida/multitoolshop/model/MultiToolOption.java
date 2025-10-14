@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class MultiToolOption {
-    private Integer id;
+    private int id;
     private String name;
     private OptionCategory category;
     private String image;

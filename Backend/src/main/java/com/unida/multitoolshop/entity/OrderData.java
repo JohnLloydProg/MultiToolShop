@@ -1,15 +1,10 @@
 package com.unida.multitoolshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.unida.multitoolshop.model.Customer;
-import com.unida.multitoolshop.model.MultiToolOption;
-import com.unida.multitoolshop.model.MultiToolSet;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,14 +14,15 @@ import java.util.List;
 public class OrderData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private CustomerData customerData;
+    private int id;
     @ManyToOne
-    @JoinColumn(name = "multiToolSetData_id")
-    private Integer multiToolSetId;
-    @OneToMany
-    @JoinColumn(name = "multiToolSetOptionData_id")
-    private List<SetOptionId> setOptions;
+    @JoinColumn(name = "customerData_id")
+    private CustomerData customerData;
+    private int multiToolSetId;
+    @ElementCollection(fetch = FetchType.EAGER) // Or LAZY, depending on your needs
+    @CollectionTable(name = "orderOptions", joinColumns = @JoinColumn(name = "orderData_id"))
+    @Column(name = "setOption")
+    private List<Integer> optionIds;
     private float totalPrice;
 
     @CreationTimestamp

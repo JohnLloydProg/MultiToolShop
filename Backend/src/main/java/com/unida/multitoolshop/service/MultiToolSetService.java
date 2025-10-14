@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface MultiToolSetService {
     List<MultiToolSet> getAll();
-    MultiToolSet getById(Integer id);
+    MultiToolSet getById(int id);
     MultiToolSet create(MultiToolSet multiToolSet);
     MultiToolSet update(MultiToolSet multiToolSet);
-    void delete(Integer id);
+    void delete(int id);
 }
