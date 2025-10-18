@@ -18,9 +18,7 @@ public class MultiToolOptionData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "optionCategoryData_id")
-    private OptionCategoryData optionCategoryData;
+    private int categoryId;
     private String image;
 
     @CreationTimestamp

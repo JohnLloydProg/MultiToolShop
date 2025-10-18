@@ -1,7 +1,7 @@
 package com.unida.multitoolshop.controller;
 
-import com.unida.multitoolshop.model.MultiToolSetOption;
-import com.unida.multitoolshop.service.MultiToolSetOptionService;
+import com.unida.multitoolshop.model.SetOption;
+import com.unida.multitoolshop.service.SetOptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,28 @@ public class MultiToolSetOptionController {
     Logger logger = Logger.getAnonymousLogger();
 
     @Autowired
-    MultiToolSetOptionService multiToolSetOptionService;
+    SetOptionService setOptionService;
 
-    @GetMapping("/api/set-option/set/{setId}")
-    public ResponseEntity<?> getAll(@PathVariable final int setId) {
+    @GetMapping("/api/set-option")
+    public ResponseEntity<?> getAll() {
         HttpHeaders httpHeaders = new HttpHeaders();
         ResponseEntity<?> responseEntity;
         try {
-            List<MultiToolSetOption> multiToolSetOptionList = multiToolSetOptionService.getAllBySetId(setId);
-            responseEntity = ResponseEntity.ok(multiToolSetOptionList);
+            List<SetOption> setOptionList = setOptionService.getAll();
+            responseEntity = ResponseEntity.ok(setOptionList);
+        } catch (Exception e) {
+            responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+        return responseEntity;
+    }
+
+    @GetMapping("/api/set-option/set/{setId}")
+    public ResponseEntity<?> getAllBySetid(@PathVariable final int setId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        ResponseEntity<?> responseEntity;
+        try {
+            List<SetOption> setOptionList = setOptionService.getAllBySetId(setId);
+            responseEntity = ResponseEntity.ok(setOptionList);
         } catch (Exception e) {
             responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -37,8 +50,8 @@ public class MultiToolSetOptionController {
         HttpHeaders httpHeaders = new HttpHeaders();
         ResponseEntity<?> responseEntity;
         try {
-            MultiToolSetOption multiToolSetOption = multiToolSetOptionService.getById(id);
-            responseEntity = ResponseEntity.ok(multiToolSetOption);
+            SetOption setOption = setOptionService.getById(id);
+            responseEntity = ResponseEntity.ok(setOption);
         } catch (Exception e) {
             responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -46,12 +59,12 @@ public class MultiToolSetOptionController {
     }
 
     @PostMapping("/api/set-option")
-    public ResponseEntity<?> create(@RequestBody final MultiToolSetOption multiToolSetOption) {
+    public ResponseEntity<?> create(@RequestBody final SetOption setOption) {
         HttpHeaders httpHeaders = new HttpHeaders();
         ResponseEntity<?> responseEntity;
         try {
-            MultiToolSetOption newMultiToolSetOption = multiToolSetOptionService.create(multiToolSetOption);
-            responseEntity = ResponseEntity.ok(newMultiToolSetOption);
+            SetOption newSetOption = setOptionService.create(setOption);
+            responseEntity = ResponseEntity.ok(newSetOption);
         } catch (Exception e) {
             responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -59,12 +72,12 @@ public class MultiToolSetOptionController {
     }
 
     @PutMapping("/api/set-option")
-    public ResponseEntity<?> update(@RequestBody final MultiToolSetOption multiToolSetOption) {
+    public ResponseEntity<?> update(@RequestBody final SetOption setOption) {
         HttpHeaders httpHeaders = new HttpHeaders();
         ResponseEntity<?> responseEntity;
         try {
-            MultiToolSetOption newMultiToolSetOption = multiToolSetOptionService.update(multiToolSetOption);
-            responseEntity = ResponseEntity.ok(newMultiToolSetOption);
+            SetOption newSetOption = setOptionService.update(setOption);
+            responseEntity = ResponseEntity.ok(newSetOption);
         } catch (Exception e) {
             responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -76,7 +89,7 @@ public class MultiToolSetOptionController {
         HttpHeaders httpHeaders = new HttpHeaders();
         ResponseEntity<?> responseEntity;
         try {
-            multiToolSetOptionService.delete(id);
+            setOptionService.delete(id);
             responseEntity = ResponseEntity.ok("Successfully deleted");
         } catch (Exception e) {
             responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

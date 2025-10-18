@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface MultiToolOptionService {
     List<MultiToolOption> getAll();
+    MultiToolOption getById(int id);
     MultiToolOption create(MultiToolOption multiToolOption);
     MultiToolOption update(MultiToolOption multiToolOption);
     void delete(int id);

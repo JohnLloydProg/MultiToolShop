@@ -9,5 +9,4 @@ public class OptionCategory {
     private int id;
     private String name;
     private Date created;
-    private Date updated;
 }

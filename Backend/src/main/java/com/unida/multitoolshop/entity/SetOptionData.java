@@ -1,7 +1,6 @@
 package com.unida.multitoolshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.unida.multitoolshop.model.MultiToolOption;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,7 +11,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table
-public class MultiToolSetOptionData {
+public class SetOptionData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

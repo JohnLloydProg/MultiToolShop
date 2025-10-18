@@ -4,7 +4,6 @@ import com.unida.multitoolshop.entity.OptionCategoryData;
 import com.unida.multitoolshop.model.OptionCategory;
 import com.unida.multitoolshop.repository.OptionCategoryDataRepository;
 import com.unida.multitoolshop.service.OptionCategoryService;
-import com.unida.multitoolshop.util.Transformer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +21,37 @@ public class OptionCategoryServiceImpl implements OptionCategoryService {
     @Autowired
     OptionCategoryDataRepository optionCategoryDataRepository;
 
+    private OptionCategory convert(OptionCategoryData optionCategoryData) {
+        OptionCategory optionCategory = new OptionCategory();
+        optionCategory.setId(optionCategoryData.getId());
+        optionCategory.setName(optionCategoryData.getName());
+        optionCategory.setCreated(optionCategoryData.getCreated());
+        return optionCategory;
+    }
+
+    private OptionCategoryData convert(OptionCategory optionCategory) {
+        OptionCategoryData optionCategoryData = new OptionCategoryData();
+        optionCategoryData.setId(optionCategory.getId());
+        optionCategoryData.setName(optionCategory.getName());
+        optionCategoryData.setCreated(optionCategory.getCreated());
+        return optionCategoryData;
+    }
+
+    @Override
+    public OptionCategory getById(int id) {
+        Optional<OptionCategoryData> optionCategoryData = optionCategoryDataRepository.findById(id);
+        if (optionCategoryData.isPresent()) {
+            logger.info("Returned OptionCategory with id " + id);
+            return this.convert(optionCategoryData.get());
+        }
+        return null;
+    }
 
     @Override
     public List<OptionCategory> getAll() {
         List<OptionCategory> optionCategoryList = new ArrayList<>();
         for (OptionCategoryData optionCategoryData : optionCategoryDataRepository.findAll()) {
-            optionCategoryList.add(Transformer.convert(optionCategoryData));
+            optionCategoryList.add(this.convert(optionCategoryData));
         }
         logger.info("Returned OptionCategory list with length of " + optionCategoryList.size());
         return optionCategoryList;
@@ -35,8 +59,8 @@ public class OptionCategoryServiceImpl implements OptionCategoryService {
 
     @Override
     public OptionCategory create(OptionCategory optionCategory) {
-        OptionCategoryData optionCategoryData = Transformer.convert(optionCategory);
-        OptionCategory newOptionCategory = Transformer.convert(optionCategoryDataRepository.save(optionCategoryData));
+        OptionCategoryData optionCategoryData = this.convert(optionCategory);
+        OptionCategory newOptionCategory = this.convert(optionCategoryDataRepository.save(optionCategoryData));
         logger.info("Created OptionCategory with id " + newOptionCategory.getId());
         return newOptionCategory;
     }

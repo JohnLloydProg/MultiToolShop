@@ -8,7 +8,8 @@ import java.util.Date;
 public class MultiToolOption {
     private int id;
     private String name;
-    private OptionCategory category;
+    private int categoryId;
+    private String categoryName;
     private String image;
     private Date updated;
     private Date created;

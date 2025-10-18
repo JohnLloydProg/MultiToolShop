@@ -1,11 +1,9 @@
 package com.unida.multitoolshop.serviceimpl;
 
 import com.unida.multitoolshop.entity.MultiToolSetData;
-import com.unida.multitoolshop.entity.MultiToolSetOptionData;
 import com.unida.multitoolshop.model.MultiToolSet;
 import com.unida.multitoolshop.repository.MultiToolSetDataRepository;
 import com.unida.multitoolshop.service.MultiToolSetService;
-import com.unida.multitoolshop.util.Transformer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +21,35 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
     @Autowired
     MultiToolSetDataRepository multiToolSetDataRepository;
 
+    private MultiToolSet convert(MultiToolSetData multiToolSetData) {
+        MultiToolSet multiToolSet = new MultiToolSet();
+        multiToolSet.setId(multiToolSetData.getId());
+        multiToolSet.setName(multiToolSetData.getName());
+        multiToolSet.setDescription(multiToolSetData.getDescription());
+        multiToolSet.setImage(multiToolSetData.getImage());
+        multiToolSet.setBasePrice(multiToolSetData.getBasePrice());
+        multiToolSet.setCreated(multiToolSetData.getCreated());
+        multiToolSet.setUpdated(multiToolSetData.getUpdated());
+        return multiToolSet;
+    }
+
+    private MultiToolSetData convert(MultiToolSet multiToolSet) {
+        MultiToolSetData multiToolSetData = new MultiToolSetData();
+        multiToolSetData.setId(multiToolSet.getId());
+        multiToolSetData.setName(multiToolSet.getName());
+        multiToolSetData.setDescription(multiToolSet.getDescription());
+        multiToolSetData.setImage(multiToolSet.getImage());
+        multiToolSetData.setBasePrice(multiToolSet.getBasePrice());
+        multiToolSetData.setCreated(multiToolSet.getCreated());
+        multiToolSetData.setUpdated(multiToolSet.getUpdated());
+        return multiToolSetData;
+    }
+
     @Override
     public List<MultiToolSet> getAll() {
         List<MultiToolSet> multiToolSetList = new ArrayList<>();
         for (MultiToolSetData multiToolSetData : multiToolSetDataRepository.findAll()) {
-            multiToolSetList.add(Transformer.convert(multiToolSetData));
+            multiToolSetList.add(this.convert(multiToolSetData));
         }
         logger.info("Returned list of MultiToolSet with length of" + multiToolSetList.size());
         return multiToolSetList;
@@ -37,7 +59,7 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
     public MultiToolSet getById(int id) {
         Optional<MultiToolSetData> multiToolSetData = multiToolSetDataRepository.findById(id);
         if (multiToolSetData.isPresent()) {
-            return Transformer.convert(multiToolSetData.get());
+            return this.convert(multiToolSetData.get());
         }else {
             logger.info("Can't find MultiToolSet with id of " + id);
         }
@@ -46,16 +68,16 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
 
     @Override
     public MultiToolSet create(MultiToolSet multiToolSet) {
-        MultiToolSetData multiToolSetData = Transformer.convert(multiToolSet);
-        MultiToolSet newMultiToolSet = Transformer.convert(multiToolSetDataRepository.save(multiToolSetData));
+        MultiToolSetData multiToolSetData = this.convert(multiToolSet);
+        MultiToolSet newMultiToolSet = this.convert(multiToolSetDataRepository.save(multiToolSetData));
         logger.info("Created MultitoolSet with id " + newMultiToolSet.getId());
         return newMultiToolSet;
     }
 
     @Override
     public MultiToolSet update(MultiToolSet multiToolSet) {
-        MultiToolSetData multiToolSetData = Transformer.convert(multiToolSet);
-        MultiToolSet newMultiToolSet = Transformer.convert(multiToolSetDataRepository.save(multiToolSetData));
+        MultiToolSetData multiToolSetData = this.convert(multiToolSet);
+        MultiToolSet newMultiToolSet = this.convert(multiToolSetDataRepository.save(multiToolSetData));
         logger.info("Updated MultiToolSet with id" + newMultiToolSet.getId());
         return newMultiToolSet;
     }

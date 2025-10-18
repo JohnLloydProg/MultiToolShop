@@ -9,8 +9,8 @@ import java.util.List;
 public class Order {
     private int id;
     private Customer customer;
-    private int multiToolSetId;
-    private List<Integer> options;
+    private MultiToolSet multiToolSet;
+    private List<SetOption> options;
     private Float totalPrice;
     private Date created;
 }

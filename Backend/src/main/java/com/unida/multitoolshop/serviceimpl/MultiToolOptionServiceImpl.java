@@ -2,9 +2,10 @@ package com.unida.multitoolshop.serviceimpl;
 
 import com.unida.multitoolshop.entity.MultiToolOptionData;
 import com.unida.multitoolshop.model.MultiToolOption;
+import com.unida.multitoolshop.model.OptionCategory;
 import com.unida.multitoolshop.repository.MultiToolOptionDataRepository;
 import com.unida.multitoolshop.service.MultiToolOptionService;
-import com.unida.multitoolshop.util.Transformer;
+import com.unida.multitoolshop.service.OptionCategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,28 +23,67 @@ public class MultiToolOptionServiceImpl implements MultiToolOptionService {
     @Autowired
     MultiToolOptionDataRepository multiToolOptionDataRepository;
 
+    @Autowired
+    OptionCategoryService optionCategoryService;
+
+    private MultiToolOption convert(MultiToolOptionData multiToolOptionData) {
+        MultiToolOption multiToolOption = new MultiToolOption();
+        multiToolOption.setId(multiToolOptionData.getId());
+        multiToolOption.setName(multiToolOptionData.getName());
+        multiToolOption.setImage(multiToolOptionData.getImage());
+        multiToolOption.setCreated(multiToolOptionData.getCreated());
+        multiToolOption.setUpdated(multiToolOptionData.getUpdated());
+        OptionCategory optionCategory = optionCategoryService.getById(multiToolOptionData.getCategoryId());
+        if (optionCategory != null) {
+            multiToolOption.setCategoryId(optionCategory.getId());
+            multiToolOption.setCategoryName(optionCategory.getName());
+        }
+        return multiToolOption;
+    }
+
+    private MultiToolOptionData convert(MultiToolOption multiToolOption) {
+        MultiToolOptionData multiToolOptionData = new MultiToolOptionData();
+        multiToolOptionData.setId(multiToolOption.getId());
+        multiToolOptionData.setName(multiToolOption.getName());
+        multiToolOptionData.setImage(multiToolOption.getImage());
+        multiToolOptionData.setCreated(multiToolOption.getCreated());
+        multiToolOptionData.setUpdated(multiToolOption.getUpdated());
+        multiToolOptionData.setCategoryId(multiToolOption.getCategoryId());
+        return multiToolOptionData;
+    }
+
     @Override
     public List<MultiToolOption> getAll() {
         List<MultiToolOption> multiToolOptionList = new ArrayList<>();
         for (MultiToolOptionData multiToolOptionData : multiToolOptionDataRepository.findAll()) {
-            multiToolOptionList.add(Transformer.convert(multiToolOptionData));
+            multiToolOptionList.add(this.convert(multiToolOptionData));
         }
         logger.info("Returned list of MultiToolOption with length of" + multiToolOptionList.size());
         return multiToolOptionList;
     }
 
     @Override
+    public MultiToolOption getById(int id) {
+        Optional<MultiToolOptionData> multiToolOptionData = multiToolOptionDataRepository.findById(id);
+        if (multiToolOptionData.isPresent()) {
+            logger.info("Returned MultiToolOption with id " + id);
+            return this.convert(multiToolOptionData.get());
+        }
+        return null;
+    }
+
+    @Override
     public MultiToolOption create(MultiToolOption multiToolOption) {
-        MultiToolOptionData multiToolOptionData = Transformer.convert(multiToolOption);
-        MultiToolOption newMultiToolOption = Transformer.convert(multiToolOptionDataRepository.save(multiToolOptionData));
+        MultiToolOptionData multiToolOptionData = this.convert(multiToolOption);
+        MultiToolOption newMultiToolOption = this.convert(multiToolOptionDataRepository.save(multiToolOptionData));
         logger.info("Created a new MultiToolOption with id " + newMultiToolOption.getId());
         return newMultiToolOption;
     }
 
     @Override
     public MultiToolOption update(MultiToolOption multiToolOption) {
-        MultiToolOptionData multiToolOptionData = Transformer.convert(multiToolOption);
-        MultiToolOption newMultiToolOption = Transformer.convert(multiToolOptionDataRepository.save(multiToolOptionData));
+        MultiToolOptionData multiToolOptionData = this.convert(multiToolOption);
+        MultiToolOption newMultiToolOption = this.convert(multiToolOptionDataRepository.save(multiToolOptionData));
         logger.info("Updated the MultiToolOption with id " + newMultiToolOption.getId());
         return newMultiToolOption;
     }

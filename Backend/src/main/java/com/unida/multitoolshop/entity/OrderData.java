@@ -15,14 +15,9 @@ public class OrderData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "customerData_id")
-    private CustomerData customerData;
-    private int multiToolSetId;
-    @ElementCollection(fetch = FetchType.EAGER) // Or LAZY, depending on your needs
-    @CollectionTable(name = "orderOptions", joinColumns = @JoinColumn(name = "orderData_id"))
-    @Column(name = "setOption")
-    private List<Integer> optionIds;
+    private int customerId;
+    private int setId;
+    private String optionIds;
     private float totalPrice;
 
     @CreationTimestamp
