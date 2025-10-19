@@ -9,7 +9,6 @@ import java.util.List;
 public class Order {
     private int id;
     private Customer customer;
-    private MultiToolSet multiToolSet;
     private List<SetOption> options;
     private Float totalPrice;
     private Date created;
