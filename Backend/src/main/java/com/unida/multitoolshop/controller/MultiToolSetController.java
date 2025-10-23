@@ -45,6 +45,19 @@ public class MultiToolSetController {
         return  responseEntity;
     }
 
+    @GetMapping("/api/set/popular/{length}")
+    public ResponseEntity<?> getMostPopular(@PathVariable final int length) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        ResponseEntity<?> responseEntity;
+        try {
+            List<MultiToolSet> multiToolSetList = multiToolSetService.getMostPopular(length);
+            responseEntity = ResponseEntity.ok(multiToolSetList);
+        }catch (Exception ex) {
+            responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+        return responseEntity;
+    }
+
     @PostMapping("/api/set")
     public ResponseEntity<?> add(@RequestBody final MultiToolSet multiToolSet) {
         HttpHeaders httpHeaders = new HttpHeaders();

@@ -12,6 +12,8 @@ public class MultiToolSet {
     private String name;
     private String description;
     private String image;
+    private int orders;
+    private int stock;
     private Float basePrice;
     private Date created;
     private Date updated;

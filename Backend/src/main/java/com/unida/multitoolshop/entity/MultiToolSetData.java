@@ -19,9 +19,10 @@ public class MultiToolSetData {
     private int id;
     private String name;
     private String description;
-
     private String image;
     private Float basePrice;
+    private int orders;
+    private int stock;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

@@ -5,10 +5,12 @@ import com.unida.multitoolshop.model.MultiToolSet;
 import com.unida.multitoolshop.repository.MultiToolSetDataRepository;
 import com.unida.multitoolshop.service.MultiToolSetService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.xpath.operations.Mult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -28,6 +30,8 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
         multiToolSet.setDescription(multiToolSetData.getDescription());
         multiToolSet.setImage(multiToolSetData.getImage());
         multiToolSet.setBasePrice(multiToolSetData.getBasePrice());
+        multiToolSet.setOrders(multiToolSetData.getOrders());
+        multiToolSet.setStock(multiToolSetData.getStock());
         multiToolSet.setCreated(multiToolSetData.getCreated());
         multiToolSet.setUpdated(multiToolSetData.getUpdated());
         return multiToolSet;
@@ -39,6 +43,8 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
         multiToolSetData.setName(multiToolSet.getName());
         multiToolSetData.setDescription(multiToolSet.getDescription());
         multiToolSetData.setImage(multiToolSet.getImage());
+        multiToolSetData.setOrders(multiToolSet.getOrders());
+        multiToolSetData.setStock(multiToolSet.getStock());
         multiToolSetData.setBasePrice(multiToolSet.getBasePrice());
         multiToolSetData.setCreated(multiToolSet.getCreated());
         multiToolSetData.setUpdated(multiToolSet.getUpdated());
@@ -52,6 +58,18 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
             multiToolSetList.add(this.convert(multiToolSetData));
         }
         logger.info("Returned list of MultiToolSet with length of" + multiToolSetList.size());
+        return multiToolSetList;
+    }
+
+    @Override
+    public List<MultiToolSet> getMostPopular(int length) {
+        List<MultiToolSet> multiToolSetList = new ArrayList<>();
+        Iterator<MultiToolSetData> iterator = multiToolSetDataRepository.findAll().iterator();
+        for (int i = 0; i < length && iterator.hasNext(); i++) {
+            MultiToolSetData multiToolSetData = iterator.next();
+            multiToolSetList.add(this.convert(multiToolSetData));
+        }
+        multiToolSetList.sort(((o1, o2) -> Integer.compare(o2.getOrders(), o1.getOrders())));
         return multiToolSetList;
     }
 
