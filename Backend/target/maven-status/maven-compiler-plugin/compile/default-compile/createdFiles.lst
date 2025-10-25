@@ -1,4 +1,5 @@
 com\unida\multitoolshop\entity\SetOptionData.class
+com\unida\multitoolshop\enumerations\OrderStatus.class
 com\unida\multitoolshop\entity\CustomerData.class
 com\unida\multitoolshop\controller\CustomerController.class
 com\unida\multitoolshop\model\MultiToolSet.class
