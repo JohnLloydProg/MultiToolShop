@@ -49,6 +49,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOptions(setOptions);
         order.setTotalPrice(orderData.getTotalPrice());
         order.setCreated(orderData.getCreated());
+        order.setStatus(orderData.getStatus());
         Customer customer = customerService.getById(orderData.getCustomerId());
         if (customer != null) {
             order.setCustomer(customer);
@@ -67,6 +68,7 @@ public class OrderServiceImpl implements OrderService {
         orderData.setOptionIds(options.toString());
         orderData.setTotalPrice(order.getTotalPrice());
         orderData.setCreated(order.getCreated());
+        orderData.setStatus(order.getStatus());
         return orderData;
     }
 

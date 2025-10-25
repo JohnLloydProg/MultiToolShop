@@ -1,5 +1,6 @@
 package com.unida.multitoolshop.model;
 
+import com.unida.multitoolshop.enumerations.OrderStatus;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,5 +12,6 @@ public class Order {
     private Customer customer;
     private List<SetOption> options;
     private Float totalPrice;
+    private OrderStatus status;
     private Date created;
 }

@@ -1,6 +1,7 @@
 package com.unida.multitoolshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.unida.multitoolshop.enumerations.OrderStatus;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,6 +19,10 @@ public class OrderData {
     private int customerId;
     private String optionIds;
     private float totalPrice;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OrderStatus status = OrderStatus.PENDING;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
