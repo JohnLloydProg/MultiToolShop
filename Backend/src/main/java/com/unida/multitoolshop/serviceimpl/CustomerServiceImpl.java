@@ -75,6 +75,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer getByEmailPassword(String email, String password) {
+        for (CustomerData customerData : customerDataRepository.findAll()) {
+            if (customerData.getPassword().equals(password) && customerData.getEmail().equals(email)) {
+                return this.convert(customerData);
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Customer create(Customer customer) {
         CustomerData customerData = this.convert(customer);
         Customer newCustomer = this.convert(customerDataRepository.save(customerData));

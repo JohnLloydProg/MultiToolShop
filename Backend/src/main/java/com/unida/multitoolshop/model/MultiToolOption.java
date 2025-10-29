@@ -10,7 +10,7 @@ public class MultiToolOption {
     private String name;
     private int categoryId;
     private String categoryName;
-    private String image;
+    private boolean multiple;
     private Date updated;
     private Date created;
 }

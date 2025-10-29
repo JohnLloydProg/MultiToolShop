@@ -26,6 +26,7 @@ public class OptionCategoryServiceImpl implements OptionCategoryService {
         optionCategory.setId(optionCategoryData.getId());
         optionCategory.setName(optionCategoryData.getName());
         optionCategory.setCreated(optionCategoryData.getCreated());
+        optionCategory.setMultiple(optionCategoryData.isMultiple());
         return optionCategory;
     }
 
@@ -34,6 +35,7 @@ public class OptionCategoryServiceImpl implements OptionCategoryService {
         optionCategoryData.setId(optionCategory.getId());
         optionCategoryData.setName(optionCategory.getName());
         optionCategoryData.setCreated(optionCategory.getCreated());
+        optionCategoryData.setMultiple(optionCategory.isMultiple());
         return optionCategoryData;
     }
 

@@ -16,6 +16,7 @@ public class OptionCategoryData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    private boolean multiple;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

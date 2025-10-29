@@ -31,6 +31,19 @@ public class CustomerController {
         return  responseEntity;
     }
 
+    @GetMapping("/api/customer")
+    public ResponseEntity<?> login(@RequestHeader("password") String password, @RequestHeader("email") String email) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        ResponseEntity<?> responseEntity;
+        try {
+            Customer customer = customerService.getByEmailPassword(email, password);
+            responseEntity = ResponseEntity.ok(customer);
+        }catch (Exception ex) {
+            responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+        return  responseEntity;
+    }
+
     @PostMapping("/api/customer")
     public ResponseEntity<?> create(@RequestBody final Customer customer) {
         HttpHeaders httpHeaders = new HttpHeaders();

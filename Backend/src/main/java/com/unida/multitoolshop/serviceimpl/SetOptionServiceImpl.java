@@ -28,9 +28,6 @@ public class SetOptionServiceImpl implements SetOptionService {
     SetOptionDataRepository multiToolSetOptionDataRepository;
 
     @Autowired
-    MultiToolSetService multiToolSetService;
-
-    @Autowired
     MultiToolOptionService multiToolOptionService;
 
     private SetOption convert(SetOptionData setOptionData) {
@@ -39,10 +36,7 @@ public class SetOptionServiceImpl implements SetOptionService {
         setOption.setAddedPrice(setOptionData.getAddedPrice());
         setOption.setCreated(setOptionData.getCreated());
         setOption.setUpdated(setOptionData.getUpdated());
-        MultiToolSet multiToolSet = multiToolSetService.getById(setOptionData.getSetId());
-        if (multiToolSet != null) {
-            setOption.setMultiToolSet(multiToolSet);
-        }
+        setOption.setSetId(setOptionData.getSetId());
         MultiToolOption multiToolOption = multiToolOptionService.getById(setOptionData.getOptionId());
         if (multiToolOption != null) {
             setOption.setMultiToolOption(multiToolOption);
@@ -56,7 +50,7 @@ public class SetOptionServiceImpl implements SetOptionService {
         setOptionData.setAddedPrice(setOption.getAddedPrice());
         setOptionData.setCreated(setOption.getCreated());
         setOptionData.setUpdated(setOption.getUpdated());
-        setOptionData.setSetId(setOption.getMultiToolSet().getId());
+        setOptionData.setSetId(setOption.getId());
         setOptionData.setOptionId(setOption.getMultiToolOption().getId());
         return setOptionData;
     }

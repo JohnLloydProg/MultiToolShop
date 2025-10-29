@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class SetOption {
     private int id;
-    private MultiToolSet multiToolSet;
+    private int setId;
     private MultiToolOption multiToolOption;
     private Float addedPrice;
     private Date created;

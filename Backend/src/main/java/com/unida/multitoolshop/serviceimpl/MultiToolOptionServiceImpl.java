@@ -30,13 +30,13 @@ public class MultiToolOptionServiceImpl implements MultiToolOptionService {
         MultiToolOption multiToolOption = new MultiToolOption();
         multiToolOption.setId(multiToolOptionData.getId());
         multiToolOption.setName(multiToolOptionData.getName());
-        multiToolOption.setImage(multiToolOptionData.getImage());
         multiToolOption.setCreated(multiToolOptionData.getCreated());
         multiToolOption.setUpdated(multiToolOptionData.getUpdated());
         OptionCategory optionCategory = optionCategoryService.getById(multiToolOptionData.getCategoryId());
         if (optionCategory != null) {
             multiToolOption.setCategoryId(optionCategory.getId());
             multiToolOption.setCategoryName(optionCategory.getName());
+            multiToolOption.setMultiple(optionCategory.isMultiple());
         }
         return multiToolOption;
     }
@@ -45,7 +45,6 @@ public class MultiToolOptionServiceImpl implements MultiToolOptionService {
         MultiToolOptionData multiToolOptionData = new MultiToolOptionData();
         multiToolOptionData.setId(multiToolOption.getId());
         multiToolOptionData.setName(multiToolOption.getName());
-        multiToolOptionData.setImage(multiToolOption.getImage());
         multiToolOptionData.setCreated(multiToolOption.getCreated());
         multiToolOptionData.setUpdated(multiToolOption.getUpdated());
         multiToolOptionData.setCategoryId(multiToolOption.getCategoryId());

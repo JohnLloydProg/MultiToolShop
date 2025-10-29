@@ -34,6 +34,7 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
         multiToolSet.setStock(multiToolSetData.getStock());
         multiToolSet.setCreated(multiToolSetData.getCreated());
         multiToolSet.setUpdated(multiToolSetData.getUpdated());
+        multiToolSet.setCustomizations(multiToolSetData.getCustomizations());
         return multiToolSet;
     }
 
@@ -48,6 +49,7 @@ public class MultiToolSetServiceImpl implements MultiToolSetService {
         multiToolSetData.setBasePrice(multiToolSet.getBasePrice());
         multiToolSetData.setCreated(multiToolSet.getCreated());
         multiToolSetData.setUpdated(multiToolSet.getUpdated());
+        multiToolSetData.setCustomizations(multiToolSet.getCustomizations());
         return multiToolSetData;
     }
 

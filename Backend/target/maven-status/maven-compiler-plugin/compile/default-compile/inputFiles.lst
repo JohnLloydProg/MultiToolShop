@@ -13,6 +13,7 @@ C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\
 C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\controller\MultiToolSetOptionController.java
 C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\service\MultiToolOptionService.java
 C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\entity\OrderData.java
+C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\enumerations\OrderStatus.java
 C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\repository\SetOptionDataRepository.java
 C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\serviceimpl\MultiToolSetServiceImpl.java
 C:\Users\Lloyd\Documents\VSC\Java\MultiToolShop-Fullstack\Backend\src\main\java\com\unida\multitoolshop\repository\CustomerDataRepository.java

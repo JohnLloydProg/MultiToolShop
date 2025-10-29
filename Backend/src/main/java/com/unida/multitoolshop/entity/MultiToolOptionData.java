@@ -19,7 +19,6 @@ public class MultiToolOptionData {
     private int id;
     private String name;
     private int categoryId;
-    private String image;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
