@@ -1,0 +1,78 @@
+<div class="product container">
+    <div class="product-part">
+        <img src="assets/{{product()?.image}}" alt="{{product()?.image}}">
+        <div class="details">
+             <h1>{{product()?.name}}</h1>
+             <p>{{product()?.description}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="order">
+        <div class="order-details">
+            <h2>Customization</h2>
+            <div class="add-buttons">
+                @for (category of options_by_category().keys(); track $index) {
+                    @if (options_by_category().get(category)?.at(0)?.multiToolOption?.multiple) {
+                        <button (click)="addClicked(category)">{{category}}</button>
+                    }
+                }
+            </div>
+            <form [formGroup]="order">
+                <div formGroupName="multiple">
+                @for (category of customizations_category().keys(); track $index) {
+                    <div class="customization-header">
+                        <h4>{{category}}</h4>
+                        <a (click)="removeClicked(category)">X</a>
+                    </div>
+                    
+                    @for (id of getMultipleKeys(); track $index) {
+                        <select id="{{id}}" formControlName="{{id}}">
+                            @for (setOption of options_by_category().get(category); track setOption.id) {
+                                <option [ngValue]="setOption">{{setOption.multiToolOption.name}}</option>
+                            }
+                        </select><br>
+                    }
+                }
+                </div>
+
+                <div formGroupName="single">
+                @for (category of getSingleKeys(); track $index) {
+                    <h4>{{category}}</h4>
+                    <select id="{{category}}" formControlName="{{category}}">
+                        @for (setOption of options_by_category().get(category); track setOption.id) {
+                            <option [ngValue]="setOption">{{setOption.multiToolOption.name}}</option>
+                        }
+                    </select><br>
+                }
+                </div>
+            </form>
+            <button [disabled]="validateForm()" >Submit</button>
+        </div>
+        <div class="price">
+            <h3>Price Breakdown</h3>
+
+            <div class="record">
+                <h5>{{ product()?.name }}</h5>
+                <p>P{{product()?.basePrice}}</p>
+            </div>
+
+            <h4>Customization</h4>
+            
+            @for (setOption of getControlValues(); track $index) {
+                @if (setOption != null) {
+                    <div class="record">
+                        <h5>{{ setOption.multiToolOption.name}}</h5>
+                        <p>P{{ setOption.addedPrice }}</p>
+                    </div>
+                }
+                
+            }
+
+            <div class="total">
+                <h3>Total: </h3>
+                <p>P {{totalPrice()}}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>

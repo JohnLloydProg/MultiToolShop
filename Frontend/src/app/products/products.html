@@ -1,5 +1,5 @@
 <div class="products container">
-    <div class="filter">
+    <form [formGroup]="filter" class="filter">
         <h2>Filter</h2>
         <hr>
         <div class="button" (click)="clickedTypes()">
@@ -7,8 +7,9 @@
         </div>
         @if (showTypes) {
             <ul>
-                <li><input type="checkbox" name="Screwdrivers" id=""> <label for="Screwdrivers">Screwdrivers</label></li>
-                <li><input type="checkbox" name="Knife" id=""> <label for="Knife">Multitool Knife</label></li>
+                <li><input type="checkbox" name="Type 1" formControlName="type1"> <label for="Type 1">Type 1</label></li>
+                <li><input type="checkbox" name="Type 2" formControlName="type2"> <label for="Type 2">Type 2</label></li>
+                <li><input type="checkbox" name="Type 3" formControlName="type3"> <label for="Type 3">Type 3</label></li>
             </ul>
         }
         <hr>
@@ -17,17 +18,16 @@
         </div>
         @if (showAvailability) {
             <ul>
-                <li><input type="checkbox" name="In" id=""> <label for="In">In Stock</label></li>
-                <li><input type="checkbox" name="Out" id=""> <label for="Out">Out of Stock</label></li>
+                <li><input type="checkbox" name="In" formControlName="inStock"> <label for="In">In Stock</label></li>
+                <li><input type="checkbox" name="Out" formControlName="outStock"> <label for="Out">Out of Stock</label></li>
             </ul>
         }
         
         <hr>
-    </div>
+    </form>
     <div class="products-container">
-        <app-product-card/>
-        <app-product-card/>
-        <app-product-card/>
-        <app-product-card/>
+        @for (product of products(); track product.id) {
+            <app-product-card [product]="product" style="margin-left: 2em;"/>
+        }
     </div>
 </div>

@@ -1,5 +1,12 @@
-<div class="product-card">
-    <img src="assets/product-card.png" alt="product-card.png">
-    <h3>Screwdriver Set</h3>
-    <h4>P1000</h4>
+<div class="product-card" [routerLink]="['/product', product()?.id]">
+    <div class="image-container">
+        <img src="assets/{{ product()?.image}}" alt="{{product()?.image}}">
+    </div>
+    <div class="product-details">
+        <h3>{{ product()?.name }}</h3>
+        <div class="order-details">
+            <h4 style="text-align: left;">P{{ product()?.basePrice }}</h4>
+            <h4 style="text-align: right;">{{ product()?.orders }} Orders</h4>
+        </div>
+    </div>
 </div>

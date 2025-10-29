@@ -1,19 +1,38 @@
 .product-card {
     width: 200px;
-    height: 250px;
     text-align: center;
     border: 2px solid #324067;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
-    img {
+    overflow: hidden;
+    .image-container {
         width: 100%;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
     }
-    h3 {
-        color: #324067;
+    
+    .product-details {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+
+        h3 {
+            color: #324067;
+        }
+
+        .order-details {
+            display: flex;
+            width: 100%;
+
+            h4 {
+                color: #8082B1;
+                width: 50%;
+            }
+        }
     }
-    h4 {
-        color: #8082B1;
-    }
+    
 }
 
 .product-card:hover {

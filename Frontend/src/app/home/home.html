@@ -20,10 +20,9 @@ you the most!</p>
     <div class="popular">
         <h1>Most Popular Products</h1>
         <div class="card-container">
-            <app-product-card/>
-            <app-product-card/>
-            <app-product-card/>
-            <app-product-card/>
+            @for (product of products(); track product.id) {
+                <app-product-card [product]="product"/>
+            }
         </div>
     </div>
 </div>

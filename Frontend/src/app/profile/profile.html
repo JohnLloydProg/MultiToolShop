@@ -1,0 +1,24 @@
+<div class="profile container">
+    <h1>Profile</h1>
+    <div class="customer-details">
+        <h2>{{customer()?.firstName}} {{customer()?.lastName}}</h2>
+        <div class="details">
+            @for (detail of getDetails(); track $index) {
+                <div class="entry">
+                    <h4>{{detail.key}}</h4>
+                    <p>{{detail.value}}</p>
+                </div>
+            }
+        </div>
+        <button (click)="logout()">Log Out</button>
+    </div>
+    @if (this.customer() == null) {
+        <div class="login">
+            <form [formGroup]="login">
+                <input type="email" formControlName="email"><br>
+                <input type="passowrd" formControlName="password"><br>
+            </form>
+            <button (click)="loginClick()">Login</button>
+        </div>
+    }
+</div>
