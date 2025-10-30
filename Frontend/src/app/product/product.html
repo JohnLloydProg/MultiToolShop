@@ -46,7 +46,7 @@
                 }
                 </div>
             </form>
-            <button [disabled]="validateForm()" >Submit</button>
+            <button [disabled]="validateForm()" (click)="checkout()">Submit</button>
         </div>
         <div class="price">
             <h3>Price Breakdown</h3>
@@ -65,7 +65,6 @@
                         <p>P{{ setOption.addedPrice }}</p>
                     </div>
                 }
-                
             }
 
             <div class="total">

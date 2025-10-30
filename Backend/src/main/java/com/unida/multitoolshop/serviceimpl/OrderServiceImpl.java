@@ -51,8 +51,12 @@ public class OrderServiceImpl implements OrderService {
         order.setCreated(orderData.getCreated());
         order.setStatus(orderData.getStatus());
         Customer customer = customerService.getById(orderData.getCustomerId());
+        MultiToolSet multiToolSet = multiToolSetService.getById(orderData.getSetId());
         if (customer != null) {
             order.setCustomer(customer);
+        }
+        if (multiToolSet != null) {
+            order.setMultiToolSet(multiToolSet);
         }
         return order;
     }
@@ -61,6 +65,7 @@ public class OrderServiceImpl implements OrderService {
         OrderData orderData = new OrderData();
         orderData.setId(order.getId());
         orderData.setCustomerId(order.getCustomer().getId());
+        orderData.setSetId(order.getMultiToolSet().getId());
         StringBuilder options = new StringBuilder();
         for (SetOption setOption : order.getOptions()) {
             options.append(setOption.getId()).append(",");

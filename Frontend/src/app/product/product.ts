@@ -4,6 +4,9 @@ import { ProductServiceModule } from '../services/product-service/product-servic
 import { Form, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SetOptionServiceModule } from '../services/set-option-service/set-option-service-module';
 import { SetOption } from '../models/set-option';
+import { OrderServiceModule } from '../services/order-service/order-service-module';
+import { Order } from '../models/order';
+import { CustomerServiceModule } from '../services/customer-service/customer-service-module';
 
 @Component({
   selector: 'app-product',
@@ -14,6 +17,8 @@ import { SetOption } from '../models/set-option';
 export class Product implements OnInit{
   private setService = new ProductServiceModule();
   private optionService = new SetOptionServiceModule();
+  private orderService = new OrderServiceModule();
+  private customerService = new CustomerServiceModule();
 
   id = input.required<number>();
   product = signal<ProductSet|null>(null);
@@ -48,7 +53,7 @@ export class Product implements OnInit{
         for (let control of Object.values<FormControl<SetOption>>(this.single.controls)) {
           customizationTotal += control.value?.addedPrice ?? 0;
         }
-        this.totalPrice.set(this.product()?.basePrice ?? 0 + customizationTotal);
+        this.totalPrice.set((this.product()?.basePrice ?? 0) + customizationTotal);
       });
   }
 
@@ -106,5 +111,26 @@ export class Product implements OnInit{
       this.customizations_category().set(category, (this.customizations_category().get(category) ?? 0) - 1)
       this.multiple.removeControl(`${category}-${(this.customizations_category().get(category) ?? 0)}`);
     }
+  }
+
+  checkout() {
+    if ("customerId" in localStorage) {
+      this.customerService.getById(Number.parseInt(localStorage.getItem("customerId") ?? "0")).then(customer => {
+        var orderDetails:Order = {
+          customer:customer,
+          multiToolSet:this.product(),
+          options:this.getControlValues(),
+          totalPrice:this.totalPrice(),
+          status:"PENDING"
+        };
+        this.orderService.checkout(orderDetails).then(data => {
+          alert("Your order has been made!");
+        });
+      })
+      
+    }else {
+      alert("You have not logged in yet!");
+    }
+    
   }
 }

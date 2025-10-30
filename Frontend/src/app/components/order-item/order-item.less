@@ -1,10 +1,12 @@
 .item {
+    height: 6em;
     display: flex;
 }
 .product-set {
     width: 40%;
     display: flex;
     img {
+        margin: auto;
         width: 30%;
         height: auto;
     }
@@ -20,6 +22,7 @@
         p {
             margin-top: 0;
             color: #8082B1;
+            font-weight: bold;
         }
         a {
             text-decoration: none;
@@ -29,8 +32,40 @@
 }
 
 .customization-details {
+    height: 100%;
     width: 30%;
-    display: flex;
+    overflow-y: scroll;
+    margin-right: 1em;
+    padding-right: 0.5em;
+    .detail {
+        display: flex;
+        padding: 0.1em;
+
+        h5 {
+            margin: 0;
+            color: #324067;
+        }
+        p {
+            font-size: smaller;
+            margin: 0;
+            color: #324067;
+            margin-left: auto;
+        }
+    }
+}
+
+.customization-details::-webkit-scrollbar {
+  width: 8px;
+}
+
+.customization-details::-webkit-scrollbar-track {
+  background: #8082B1;   
+  border-radius: 8px;
+}
+
+.customization-details::-webkit-scrollbar-thumb {
+  background: #324067; 
+  border-radius: 8px;
 }
 
 .status, .total {

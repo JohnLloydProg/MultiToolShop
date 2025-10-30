@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class Order {
     private int id;
+    private MultiToolSet multiToolSet;
     private Customer customer;
     private List<SetOption> options;
     private Float totalPrice;

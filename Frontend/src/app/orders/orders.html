@@ -8,6 +8,9 @@
     </div>
     <hr>
     <div class="order-container">
-        <app-order-item/>
+        @for (order of orders(); track $index) {
+            <app-order-item [order]="order"/>
+            <hr>
+        }
     </div>
 </div>

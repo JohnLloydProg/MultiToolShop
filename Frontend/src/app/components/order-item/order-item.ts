@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Order } from '../../models/order';
+import { ProductSet } from '../../models/product-set';
 
 @Component({
   selector: 'app-order-item',
@@ -7,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './order-item.less'
 })
 export class OrderItem {
-
+  order = input.required<Order>();
 }
