@@ -25,7 +25,7 @@
                         <a (click)="removeClicked(category)">X</a>
                     </div>
                     
-                    @for (id of getMultipleKeys(); track $index) {
+                    @for (id of getMultipleKeys(category); track $index) {
                         <select id="{{id}}" formControlName="{{id}}">
                             @for (setOption of options_by_category().get(category); track setOption.id) {
                                 <option [ngValue]="setOption">{{setOption.multiToolOption.name}}</option>
