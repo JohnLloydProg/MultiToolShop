@@ -103,6 +103,10 @@ public class OrderServiceImpl implements OrderService {
     public Order create(Order order) {
         OrderData orderData = this.convert(order);
         Order newOrder = this.convert(orderDataRepository.save(orderData));
+        MultiToolSet multiToolSet = newOrder.getMultiToolSet();
+        multiToolSet.setStock(multiToolSet.getStock() - 1);
+        multiToolSet.setOrders(multiToolSet.getOrders() + 1);
+        multiToolSetService.update(multiToolSet);
         logger.info("Created Order with id " + newOrder.getId());
         return newOrder;
     }

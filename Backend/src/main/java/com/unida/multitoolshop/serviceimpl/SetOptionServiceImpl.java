@@ -50,7 +50,7 @@ public class SetOptionServiceImpl implements SetOptionService {
         setOptionData.setAddedPrice(setOption.getAddedPrice());
         setOptionData.setCreated(setOption.getCreated());
         setOptionData.setUpdated(setOption.getUpdated());
-        setOptionData.setSetId(setOption.getId());
+        setOptionData.setSetId(setOption.getSetId());
         setOptionData.setOptionId(setOption.getMultiToolOption().getId());
         return setOptionData;
     }
