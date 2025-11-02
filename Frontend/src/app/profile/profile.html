@@ -1,24 +1,31 @@
 <div class="profile container">
     <h1>Profile</h1>
-    <div class="customer-details">
-        <h2>{{customer()?.firstName}} {{customer()?.lastName}}</h2>
-        <div class="details">
-            @for (detail of getDetails(); track $index) {
-                <div class="entry">
-                    <h4>{{detail.key}}</h4>
-                    <p>{{detail.value}}</p>
-                </div>
-            }
-        </div>
-        <button (click)="logout()">Log Out</button>
-    </div>
     @if (this.customer() == null) {
         <div class="login">
+            <h2>Login</h2>
             <form [formGroup]="login">
-                <input type="email" formControlName="email"><br>
-                <input type="passowrd" formControlName="password"><br>
+                <h4>Email</h4>
+                <input type="email" formControlName="email" name="email">
+                <h4>Password</h4>
+                <input type="password" formControlName="password">
             </form>
             <button (click)="loginClick()">Login</button>
+            <a href="">Don't have an account?</a>
+        </div>
+    }
+    @else {
+        <div class="customer-details">
+            <div class="navigation">
+                <h4>Welcome {{customer()?.firstName}}</h4>
+                <ul>
+                    <li><a routerLink="details">Personal Details</a></li>
+                    <li><a routerLink="security">Security</a></li>
+                    <li><a (click)="logout()">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="widget-container">
+                <router-outlet/>
+            </div>
         </div>
     }
 </div>

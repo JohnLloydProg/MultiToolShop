@@ -2,10 +2,11 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Customer } from '../models/customer';
 import { CustomerServiceModule } from '../services/customer-service/customer-service-module';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterOutlet, RouterLinkWithHref],
   templateUrl: './profile.html',
   styleUrl: './profile.less'
 })

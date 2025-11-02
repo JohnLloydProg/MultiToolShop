@@ -26,4 +26,9 @@ export class CustomerServiceModule {
     const observable = this.httpClient.get<Customer>(`http://localhost:8086/api/customer/${id}`);
     return firstValueFrom(observable);
   }
+
+  async update(customer:Customer):Promise<Customer> {
+    const observable = this.httpClient.put<Customer>("http://localhost:8086/api/customer", customer);
+    return firstValueFrom(observable);
+  }
 }

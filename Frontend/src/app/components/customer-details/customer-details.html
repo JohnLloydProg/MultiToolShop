@@ -1,0 +1,31 @@
+<div class="details">
+    <h2>{{customer()?.firstName}} {{customer()?.middleName}} {{customer()?.lastName}}</h2>
+    <hr>
+    <div class="flex" style="margin-top: 2em;">
+        <div>
+            <div class="detail">
+                <h4>Email</h4>
+                <p>{{customer()?.email}}</p>
+            </div>
+            <div class="detail">
+                <h4>Birthday</h4>
+                <p>{{formatedBirthdate()}}</p>
+            </div>
+            <div class="detail">
+                <h4>Delivery Address</h4>
+                <p>{{customer()?.address}}</p>
+            </div>
+        </div>
+        <div style="margin-left: 3em;">
+            <div class="detail">
+                <h4>Contact Number</h4>
+                <p>{{customer()?.contactNumber}}</p>
+            </div>
+            <div class="detail">
+                <h4>Member Since:</h4>
+                <p>{{formatedCreated()}}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
