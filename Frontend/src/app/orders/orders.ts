@@ -14,7 +14,12 @@ export class Orders implements OnInit{
   orders = signal<Order[]>([]);
 
   ngOnInit(): void {
-      this.service.getByCustomerId(Number.parseInt(localStorage.getItem("customerId") ?? "0")).then(data => this.orders.set(data))
+      this.service.getByCustomerId(Number.parseInt(localStorage.getItem("customerId") ?? "0")).then(data => this.orders.set(data));
+  }
+
+  refresh() {
+    console.log("A order has been cancelled!");
+    this.service.getByCustomerId(Number.parseInt(localStorage.getItem("customerId") ?? "0")).then(data => this.orders.set(data))
   }
 
 }

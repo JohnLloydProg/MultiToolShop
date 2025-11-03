@@ -110,4 +110,23 @@ public class OrderServiceImpl implements OrderService {
         logger.info("Created Order with id " + newOrder.getId());
         return newOrder;
     }
+
+    @Override
+    public Order update(Order order) {
+        OrderData orderData = this.convert(order);
+        Order newOrder = this.convert(orderDataRepository.save(orderData));
+        logger.info("Updated Order with id " + newOrder.getId());
+        return newOrder;
+    }
+
+    @Override
+    public void delete(int id) {
+        Optional<OrderData> orderData = orderDataRepository.findById(id);
+        if (orderData.isPresent()) {
+            logger.info("Deleted Order with id " + orderData.get().getId());
+            orderDataRepository.delete(orderData.get());
+        }else {
+            logger.info("Can't find Order with id " + id);
+        }
+    }
 }

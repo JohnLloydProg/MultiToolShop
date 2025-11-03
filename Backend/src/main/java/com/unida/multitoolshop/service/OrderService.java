@@ -9,4 +9,6 @@ public interface OrderService {
     List<Order> getAllByCustomerId(int customerId);
     Order getById(int id);
     Order create(Order order);
+    Order update(Order order);
+    void delete(int id);
 }

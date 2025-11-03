@@ -29,11 +29,12 @@ export class Profile implements OnInit{
   }
 
   loginClick() {
-    console.log(`Email: ${this.login.get("email")?.value}, Password: ${this.login.get("password")?.value}`)
     this.service.login(this.login.get("email")?.value ?? '', this.login.get("password")?.value ?? '').then((data) => {
       this.customer.set(data);
       localStorage.setItem("customerId", ""+data.id);
       console.log(data);
+    }).catch((reason) => {
+      alert("Wrong email or password!");
     })
   }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SetOption } from '../../models/set-option';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -16,7 +17,7 @@ export class SetOptionServiceModule {
   private httpClient = inject(HttpClient);
 
   async getSetOptionsBySet(setId:number):Promise<SetOption[]> {
-    const observable = this.httpClient.get<SetOption[]>(`http://localhost:8086/api/set-option/set/${setId}`)
+    const observable = this.httpClient.get<SetOption[]>(`${environment.apiUrl}/api/set-option/set/${setId}`)
     return firstValueFrom(observable);
   }
 

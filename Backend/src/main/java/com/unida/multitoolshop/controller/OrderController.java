@@ -58,4 +58,30 @@ public class OrderController {
         return responseEntity;
     }
 
+    @PutMapping("/api/order")
+    public ResponseEntity<?> update(@RequestBody final Order order) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        ResponseEntity<?> responseEntity;
+        try {
+            Order newOrder = orderService.update(order);
+            responseEntity = ResponseEntity.ok(newOrder);
+        }catch (Exception ex) {
+            responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+        return responseEntity;
+    }
+
+    @DeleteMapping("/api/order/{id}")
+    public ResponseEntity<?> delete(@PathVariable final int id) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        ResponseEntity<?> responseEntity;
+        try {
+            orderService.delete(id);
+            responseEntity = ResponseEntity.ok("Order deleted");
+        }catch (Exception ex) {
+            responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+        return responseEntity;
+    }
+
 }

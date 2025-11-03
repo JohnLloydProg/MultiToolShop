@@ -1,0 +1,54 @@
+<div class="registration container">
+    <h1>Registration</h1>
+    <form [formGroup]="registration">
+        <div class="flex">
+            <div class="detail">
+                <h4>First Name</h4>
+                <input type="text" formControlName="firstName">
+            </div>
+            <div class="detail">
+                <h4>Middle Name</h4>
+                <input type="text" formControlName="middlName">
+            </div>
+            <div class="detail">
+                <h4>Last Name</h4>
+                <input type="text" formControlName="lastName">
+            </div>
+        </div>
+        <div class="flex">
+            <div class="detail">
+                <h4>Email</h4>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="detail">
+                <h4>Password</h4>
+                <input type="text" formControlName="password">
+            </div>
+            <div class="detail">
+                <h4>Confirm Password</h4>
+                <input type="text" formControlName="confirmPass">
+            </div>
+        </div>
+        <div class="flex">
+            <div class="detail" style="width: 40%;">
+                <h4>Address</h4>
+                <input type="text" style="width: 100%;" formControlName="address">
+            </div>
+            <div class="detail" style="width: 40%;">
+                <h4>Contact Number</h4>
+                <input type="text" style="width: 100%;" formControlName="contactNumber">
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="detail" style="width: 40%;">
+                <h4>Birthdate</h4>
+                <input type="date" formControlName="birthDate">
+            </div>
+            
+            <button (click)="register()">Register</button>
+        </div>
+        
+    </form>
+    
+</div>

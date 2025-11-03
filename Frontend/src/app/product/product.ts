@@ -7,6 +7,7 @@ import { SetOption } from '../models/set-option';
 import { OrderServiceModule } from '../services/order-service/order-service-module';
 import { Order } from '../models/order';
 import { CustomerServiceModule } from '../services/customer-service/customer-service-module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -19,6 +20,7 @@ export class Product implements OnInit{
   private optionService = new SetOptionServiceModule();
   private orderService = new OrderServiceModule();
   private customerService = new CustomerServiceModule();
+  private router = new Router();
 
   id = input.required<number>();
   product = signal<ProductSet|null>(null);
@@ -137,6 +139,7 @@ export class Product implements OnInit{
       };
       this.orderService.checkout(orderDetails).then(data => {
         alert("Your order has been made!");
+        this.router.navigate(['/orders']);
       });
     })
     

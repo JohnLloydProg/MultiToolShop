@@ -2,7 +2,7 @@
     <h1>Profile</h1>
     @if (this.customer() == null) {
         <div class="login">
-            <h2>Login</h2>
+            <h2>Log In</h2>
             <form [formGroup]="login">
                 <h4>Email</h4>
                 <input type="email" formControlName="email" name="email">
@@ -10,7 +10,7 @@
                 <input type="password" formControlName="password">
             </form>
             <button (click)="loginClick()">Login</button>
-            <a href="">Don't have an account?</a>
+            <a [routerLink]="['/registration']">Don't have an account?</a>
         </div>
     }
     @else {

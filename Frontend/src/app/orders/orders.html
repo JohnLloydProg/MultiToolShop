@@ -9,7 +9,7 @@
     <hr>
     <div class="order-container">
         @for (order of orders(); track $index) {
-            <app-order-item [order]="order"/>
+            <app-order-item [order]="order" (onCancelled)="refresh()"/>
             <hr>
         }
     </div>

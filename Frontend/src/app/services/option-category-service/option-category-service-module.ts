@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { OptionCategory } from '../../models/option-category';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 
@@ -16,7 +17,7 @@ export class OptionCategoryServiceModule {
   private httpClient = inject(HttpClient);
 
   async getAll():Promise<OptionCategory[]> {
-    const observable = this.httpClient.get<OptionCategory[]>("http://localhost:8086/api/option-category");
+    const observable = this.httpClient.get<OptionCategory[]>(`${environment.apiUrl}/api/option-category`);
     return firstValueFrom(observable)
   }
 }

@@ -37,7 +37,11 @@ public class CustomerController {
         ResponseEntity<?> responseEntity;
         try {
             Customer customer = customerService.getByEmailPassword(email, password);
-            responseEntity = ResponseEntity.ok(customer);
+            if (customer == null) {
+                responseEntity = ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Wrong password or email!");
+            }else {
+                responseEntity = ResponseEntity.ok(customer);
+            }
         }catch (Exception ex) {
             responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }

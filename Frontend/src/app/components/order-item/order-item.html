@@ -4,7 +4,9 @@
         <div class="set-details">
             <h4>{{order().multiToolSet?.name}}</h4>
             <p>P{{order().multiToolSet?.basePrice}}</p>
-            <a>Cancel</a>
+            @if (order().status == "PENDING") {
+                <a (click)="cancel()">Cancel</a>
+            }
         </div>
     </div>
     <div class="customization-details">
